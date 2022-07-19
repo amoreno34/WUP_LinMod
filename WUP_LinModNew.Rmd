@@ -48,7 +48,7 @@ Positive linear plot. Some points scattered but mostly at a positive rate.
 ```{r}
 cor(SIMS~ARM,data=data)
 ```
-
+The numerical results conclude with a value of 0.686
 
 ### Inferential  (Build model.1)
 
@@ -57,6 +57,7 @@ summary(lmr)
 newdata=c(GRIP=94, ARM=88)
 ```
 
+The minimum value is -3.6467. The Q1 value is -0.7502. The median is -0.0285. The max is 3.0770.
 
 #### Predict at target point
 
@@ -65,42 +66,84 @@ predictSIMS=predict.lm(lmr, newdata=data.frame(GRIP=94, ARM=88))
 print(predictSIMS)
 ```
 
-
+The target point for SIM~ARMS is 0.7063
 
 #### scatterplot with model fit
   
+```{r}
+plot(lmr)
+```
+
+Positive line in the Q-Q means this is normal and accurate.
 
 ## Model 2 SIM~GRIP
 
 ### Now add in scatterplot
 
+```{r}
+plot(SIMS~GRIP,data=data)
+lmr = lm(SIMS~GRIP,data=data)
+abline(lmr)
+```
 
 ### Numerical results 
 
+```{r}
+cor(SIMS~GRIP,data=data)
+```
+
 
 ### Inferential  (Build model.2)
+
+```{r}
+summary(lmr)
+newdata=c(GRIP=94, ARM=88)
+```
   
 
 #### predict model.2 at target point
 
+```{r}
+predictSIMS=predict.lm(lmr, newdata=data.frame(GRIP=94, ARM=88))
+print(predictSIMS)
+```
+
+
 #### now add the model fit to our plot for model.2
   
-
+```{r}
+plot(lmr)
+```
 
 ## Model 3 SIM~ARM+GRIP
 
 ### Numerical results (cor)
 
-`
+```{r}
+data2=lm(SIMS~ARM+GRIP, data=data)
+summary(data2)
+```
+
   
 ### Inferential  (Build 2-dimentional model.3)
 
 #### predict model.3 at target point
+
+```{r}
+predict.lm(data2, newdata=data.frame(GRIP=94, ARM=88))
+```
+
   
 
 ## Comparing nested models ANOVA Test
 
 ### Model.1 vs Model.3
+
+```{r}
+anova(lmr, data2)
+```
+
+
 ### Model.2 vs Model.3
 
 ## Informally compare Model.1 with model.2
