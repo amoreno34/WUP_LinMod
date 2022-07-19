@@ -133,7 +133,9 @@ data2=lm(SIMS~ARM+GRIP, data=data)
 summary(data2)
 ```
 
-  
+
+The minimum value is -3.1846. The median is -0.0641. The max is 2.8634.
+
 ### Inferential  (Build 2-dimentional model.3)
 
 #### predict model.3 at target point
@@ -152,8 +154,22 @@ predict.lm(data2, newdata=data.frame(GRIP=94, ARM=88))
 anova(lmr, data2)
 ```
 
+145 residual degrees of freedom for SIMS~ARM is 145, while SIMS~ARM+GRIP is 144. Difference of 1. Model 2 has a sum of squares of 29.45. Model 2 has a p-value of 0.000004994.
 
 ### Model.2 vs Model.3
 
+```{r}
+anova(grp, data2)
+```
+
+Residual freedom of values for SIMS~GRIP is 145 and SIMS~ARM+GRIP is 144. Same difference of 1 as before. Model 2 has a sum of squares of 54.64. Model 2 has a p-value of 0.000000001495.
+
+
 ## Informally compare Model.1 with model.2
+
+```{r}
+anova(lmr, grp)
+```
+
+The residual degrees of freedom for model 1 and 2 are at 145 for both. No difference here. No p-value given for these comparisons.
 
