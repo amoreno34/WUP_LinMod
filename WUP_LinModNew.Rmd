@@ -82,9 +82,11 @@ Positive line in the Q-Q means this is normal and accurate.
 
 ```{r}
 plot(SIMS~GRIP,data=data)
-lmr = lm(SIMS~GRIP,data=data)
-abline(lmr)
+grp = lm(SIMS~GRIP,data=data)
+abline(grp)
 ```
+
+Positive linear relation in this plot graph.
 
 ### Numerical results 
 
@@ -92,28 +94,35 @@ abline(lmr)
 cor(SIMS~GRIP,data=data)
 ```
 
+The numerical value is 0.63984
 
 ### Inferential  (Build model.2)
 
 ```{r}
-summary(lmr)
+summary(grp)
 newdata=c(GRIP=94, ARM=88)
 ```
-  
+
+The minimum value is -2.9295. The Q1 value is -0.8708. The Q3 value is .8039. The median is -0.1219. The max is 3.3494.
+
 
 #### predict model.2 at target point
 
 ```{r}
-predictSIMS=predict.lm(lmr, newdata=data.frame(GRIP=94, ARM=88))
-print(predictSIMS)
+predictGRIP=predict.lm(grp, newdata=data.frame(GRIP=94, ARM=88))
+print(predictGRIP)
 ```
+
+The target point prediction value is -0.5361
 
 
 #### now add the model fit to our plot for model.2
   
 ```{r}
-plot(lmr)
+plot(grp)
 ```
+
+Plots look accurate as they are following the data given.
 
 ## Model 3 SIM~ARM+GRIP
 
